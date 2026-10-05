@@ -1,0 +1,1630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Adivasi Haat</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f5f5f0;
+            color: #333;
+        }
+
+        /* Header */
+        header {
+            background: #31572c;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin-bottom: 8px;
+        }
+
+        nav {
+            margin-top: 15px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 12px;
+        }
+
+        /* Hero */
+        .hero {
+    background-image:
+        linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
+        url("hero-bg.png");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    min-height: 450px;
+    padding: 100px 20px;
+
+    color: white;
+    text-align: center;
+}
+
+        .hero h2 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .hero button {
+            background: #31572c;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            margin-top: 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Search */
+        .search {
+            text-align: center;
+            padding: 25px;
+        }
+
+        .search input {
+            width: 80%;
+            max-width: 500px;
+            padding: 12px;
+            border: 1px solid #aaa;
+            border-radius: 5px;
+        }
+
+        /* Products */
+        .products {
+            padding: 30px;
+        }
+
+        .products h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #31572c;
+        }
+
+        .product-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            width: 230px;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+            text-align: center;
+        }
+
+        .card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .card h3 {
+            margin: 10px 0;
+        }
+
+        .price {
+            color: #31572c;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .card button {
+            background: #31572c;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            margin-top: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .cart-dashboard {
+            padding: 30px;
+            background: #edf2e8;
+        }
+
+        .cart-dashboard h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #31572c;
+        }
+
+        .cart-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            padding: 16px;
+            margin-bottom: 12px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .cart-item h3 {
+            margin-bottom: 6px;
+        }
+
+        .cart-item-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .cart-item-controls button,
+        .cart-actions button {
+            padding: 8px 12px;
+            background: #31572c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .cart-item-controls .remove-item,
+        .cart-actions .clear-cart {
+            background: #8b2f25;
+        }
+
+        .cart-summary {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            margin-top: 20px;
+            font-size: 1.15rem;
+            font-weight: bold;
+        }
+
+        #cartSummary[hidden] {
+            display: none;
+        }
+
+        .cart-empty {
+            padding: 20px;
+            text-align: center;
+            background: white;
+            border-radius: 8px;
+        }
+
+        @media (max-width: 520px) {
+            .cart-item,
+            .cart-summary {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
+
+        /* Upload */
+        .upload {
+            background: white;
+            margin: 30px auto;
+            padding: 30px;
+            width: 90%;
+            max-width: 600px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+        }
+
+        .upload h2 {
+            text-align: center;
+            color: #31572c;
+            margin-bottom: 20px;
+        }
+
+        .upload input,
+        .upload select {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+        }
+
+        .upload button {
+            width: 100%;
+            padding: 12px;
+            background: #31572c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #result {
+            margin-top: 15px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        /* Footer */
+        footer {
+            background: #31572c;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <h1>🌿 ADIVASI HAAT</h1>
+        <p>Tribal Products Marketplace</p>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#products">Products</a>
+            <a href="#cart">Cart (<span id="cartCount">0</span>)</a>
+            <a href="#upload">Sell Product</a>
+        </nav>
+    </header>
+
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <h2>Buy Directly From Tribal Sellers</h2>
+
+        <p>
+            Natural products directly from tribal communities
+        </p>
+
+        <button onclick="showProducts()">
+            Explore Products
+        </button>
+    </section>
+
+
+    <!-- Search -->
+    <section class="search">
+        <input
+            type="text"
+            id="searchBox"
+            placeholder="Search products..."
+            onkeyup="searchProducts()"
+        >
+    </section>
+
+
+    <!-- Products -->
+    <section class="products" id="products">
+
+        <h2>Our Products</h2>
+
+        <div class="product-container" id="productContainer">
+
+            <div class="card">
+                <img
+                    src="honey.png"
+                    alt="Honey"
+                >
+
+                <h3>Natural Honey</h3>
+
+                <p>Pure forest honey</p>
+
+                <p class="price">₹450 / kg</p>
+
+                <button onclick="addToCart('Natural Honey',450)">
+                    Add to Cart
+                </button>
+            </div>
+
+
+            <div class="card">
+                <img
+                    src="bamboo.png"
+                    alt="Bamboo"
+                >
+
+                <h3>Bamboo </h3>
+
+                <p>Handmade tribal product</p>
+
+                <p class="price">₹350</p>
+
+                <button onclick="addToCart('Bamboo',350)">
+                    Add to Cart
+                </button>
+            </div>
+
+
+            <div class="card">
+                <img
+                    src="maloo.png"
+                    alt="Leaves"
+                >
+
+                <h3>Adda Leaves</h3>
+
+                <p>Natural forest leaves</p>
+
+                <p class="price">₹200 / bundle</p>
+
+                <button onclick="addToCart('Adda Leaves',200)">
+                    Add to Cart
+                </button>
+            </div>
+
+
+            <div class="card">
+                <img
+                    src="ippapuvvu.png"
+                    alt="Ippapuvvu"
+                >
+
+                <h3>Ippapuvvu</h3>
+
+                <p>Forest collected flowers</p>
+
+                <p class="price">250/kg</p>
+
+                <button onclick="addToCart('Ippapuvvu',250)">
+                    Add to Cart
+                </button>
+            </div>
+
+             <div class="card">
+                <img
+                    src="coffee.png"
+                    alt="coffe"
+                >
+
+                <h3>Coffee</h3>
+
+                <p>Handmade tribal product</p>
+
+                <p class="price">₹450/kg</p>
+
+                <button onclick="addToCart('coffee',450)">
+                    Add to Cart
+                </button>
+            </div>
+             <div class="card">
+                <img
+                    src="pepper.png"
+                    alt="Miriyalu"
+                >
+
+                <h3>Miriyalu</h3>
+
+                <p>Handmade tribal product</p>
+
+                <p class="price">₹750/kg</p>
+
+                <button onclick="addToCart('Miriyalu',750)">
+                    Add to Cart
+                </button>
+            </div>
+             <div class="card">
+                <img
+                    src="boddengulu.png"
+                    alt="Boddengulu"
+                >
+
+                <h3>Boddengulu</h3>
+
+                <p>Handmade tribal product</p>
+
+                <p class="price">₹250/kg</p>
+
+                <button onclick="addToCart('Boddengulu',250)">
+                    Add to Cart
+                </button>
+            </div> 
+            
+            
+            
+            <div class="card">
+                <img
+                    src="eetha.png"
+                    alt="Eethapallu"
+                >
+
+                <h3>Eethapallu</h3>
+
+                <p>Handmade tribal product</p>
+
+                <p class="price">₹300/kg</p>
+
+                <button onclick="addToCart('Eethapallu',300)">
+                    Add to Cart
+                </button>
+            </div>
+             <div class="card">
+                <img
+                    src="regi.png"
+                    alt="regi pallu"
+                >
+
+                <h3>regi pallu</h3>
+
+                <p>Handmade tribal product</p>
+
+                <p class="price">₹150/kg</p>
+
+                <button onclick="addToCart('regi pallu',150)">
+                    Add to Cart
+                </button>
+            </div>
+
+
+             <div class="card">
+                <img
+                    src="lichee.png"
+                    alt="Leechipallu"
+                >
+
+                <h3>Leechipallu</h3>
+
+                <p>Handmade tribal product</p>
+
+                <p class="price">₹450/kg</p>
+
+                <button onclick="addToCart('Leechipallu',450)">
+                    Add to Cart
+                </button>
+            </div>
+
+
+
+             <div class="card">
+                <img
+                    src="kanchedi.png"
+                    alt="Knchedu puuvulu"
+                >
+
+                <h3>Kanchedu puvvulu</h3>
+
+                <p>Handmade tribal product</p>
+
+                <p class="price">₹200/kg</p>
+
+                <button onclick="addToCart('Kanchedu puvvulu',200)">
+                    Add to Cart
+                </button>
+            </div>
+
+             <div class="card">
+                <img
+                    src="straw.png"
+                    alt="strawbarry"
+                >
+
+                <h3>Strawbarry</h3>
+
+                <p>Handmade tribal product</p>
+
+                <p class="price">₹350/kg</p>
+
+                <button onclick="addToCart('Strawbarry',350)">
+                    Add to Cart
+                </button>
+            </div>
+              <div class="card">
+                <img
+                    src="https://www.thestatesman.com/wp-content/uploads/2023/12/sunflower-seeds.jpg"
+                    alt="Sun flower"
+                >
+
+                <h3>Sun flower</h3>
+
+                <p>Handmade tribal product</p>
+
+                <p class="price">₹500/kg</p>
+
+                <button onclick="addToCart('Sun flower',500)">
+                    Add to Cart
+                </button>
+            </div>
+
+
+              <div class="card">
+                <img
+                    src="https://img.onmanorama.com/content/dam/mm/en/food/features/images/2022/7/18/custard-apple-seethappazham-athakka.jpg"
+                    alt="Seethapallam"
+                >
+
+                <h3>Seethapallam</h3>
+
+                <p>Handmade tribal product</p>
+
+                <p class="price">₹450/kg</p>
+
+                <button onclick="addToCart('Seethapalam',450)">
+                    Add to Cart
+                </button>
+            </div>
+
+             <div class="card">
+                <img
+                    src="https://5.imimg.com/data5/YZ/BZ/XJ/ANDROID-81645748/product-jpeg-500x500.jpg"
+                    alt="Jackfruit"
+                >
+
+                <h3>Jackfruit</h3>
+
+                <p>Handmade tribal product</p>
+
+                <p class="price">₹300/kg</p>
+
+                <button onclick="addToCart('Jackfruit',300)">
+                    Add to Cart
+                </button>
+            </div>
+
+             <div class="card">
+                <img
+                    src="https://tiimg.tistatic.com/fp/1/009/230/white-rajma-kidney-beans-260.jpg"
+                    alt="Kidney beans"
+                >
+
+                <h3>Kidney beans</h3>
+
+                <p>Handmade tribal product</p>
+
+                <p class="price">₹350/kg</p>
+
+                <button onclick="addToCart('Kidney beans',350)">
+                    Add to Cart
+                </button>
+            </div>
+
+             <div class="card">
+                <img
+                    src="https://media.istockphoto.com/id/465670047/photo/whole-and-sliced-ginger.jpg"
+                    alt="Ginger"
+                >
+
+                <h3>Ginger</h3>
+
+                <p>Handmade tribal product</p>
+
+                <p class="price">₹350/kg</p>
+
+                <button onclick="addToCart('Ginger',350)">
+                    Add to Cart
+                </button>
+            </div>
+
+             <div class="card">
+                <img
+                    src="https://img.magnific.com/premium-photo/pumpkin-fresh-harvest-various-types-varieties-rustic-setting_892776-41638.jpg"
+                    alt="Pumpkin"
+                >
+
+                <h3>Pumpkin</h3>
+
+                <p>Handmade tribal product</p>
+
+                <p class="price">₹350/kg</p>
+
+                <button onclick="addToCart('Pumpkin',350)">
+                    Add to Cart
+                </button>
+            </div>
+
+             <div class="card">
+                <img
+                    src="pumpleaves.png"
+                    alt="Pumpkin leaves"
+                >
+                <h3>Pumpkin leaves</h3>
+
+                <p>Handmade tribal product</p>
+
+                <p class="price">₹350/kg</p>
+
+                <button onclick="addToCart('Pumpkin',350)">
+                    Add to Cart
+                </button>
+
+                </div>
+
+
+             <div class="card">
+                <img
+                    src="https://5.imimg.com/data5/SELLER/Default/2024/4/414741968/SW/MV/FO/24035409/raw-pumpkin-seeds-1000x1000.jpg"
+                    alt="Pumpkin seeds"
+                >
+
+                <h3>Pumpkin seeds</h3>
+
+                <p>Handmade tribal product</p>
+
+                <p class="price">₹350/kg</p>
+
+                <button onclick="addToCart('Pumpkin seeds',350)">
+                    Add to Cart
+                </button>
+            </div>
+
+             <div class="card">
+                <img
+                    src="pendalam.png"
+                    alt="Pendalam dhumpalu"
+                >
+
+                <h3>Pendalam Dhumpalu</h3>
+
+                <p>Handmade tribal product</p>
+
+                <p class="price">₹350/kg</p>
+
+                <button onclick="addToCart('Pendalam dhumpalu',350)">
+                    Add to Cart
+                </button>
+            </div>
+
+             <div class="card">
+                <img
+                    src="sweet.png"
+                    alt="Sweet potato"
+                >
+
+                <h3>Sweet potato</h3>
+
+                <p>Handmade tribal product</p>
+
+                <p class="price">₹350/kg</p>
+
+                <button onclick="addToCart('Sweet potato',350)">
+                    Add to Cart
+                </button>
+            </div>
+
+             <div class="card">
+                <img
+                    src="turmer.png"
+                    alt="Turmeric"
+                >
+
+                <h3>Turmeric</h3>
+
+                <p>Handmade tribal product</p>
+
+                <p class="price">₹350/kg</p>
+
+                <button onclick="addToCart('Turmeric',350)">
+                    Add to Cart
+                </button>
+            </div>
+
+             <div class="card">
+                <img
+                    src="chikkudu.png"
+                    alt="Chuikkudu kayalu"
+                >
+
+                <h3>Chikkudu kayalu</h3>
+
+                <p>Handmade tribal product</p>
+
+                <p class="price">₹350/kg</p>
+
+                <button onclick="addToCart('Chikkudu kayalu',350)">
+                    Add to Cart
+                </button>
+            </div>
+
+             <div class="card">
+                <img
+                    src="konda.png"
+                    alt="Konda kandhulu"
+                >
+
+                <h3>Konda kandhulu</h3>
+
+                <p>Handmade tribal product</p>
+
+                <p class="price">₹350/kg</p>
+
+                <button onclick="addToCart('Konda kandhulu',350)">
+                    Add to Cart
+                </button>
+            </div>
+
+             <div class="card">
+                <img
+                    src="ragi.png"
+                    alt="Ragulu"
+                >
+
+                <h3>Ragulu</h3>
+
+                <p>Handmade tribal product</p>
+
+                <p class="price">₹350/kg</p>
+
+                <button onclick="addToCart('Ragulu',350)">
+                    Add to Cart
+                </button>
+            </div>
+
+             <div class="card">
+                <img
+                    src="samalu.png"
+                    alt="Samalu"
+                >
+
+                <h3>Samalu</h3>
+
+                <p>Handmade tribal product</p>
+
+                <p class="price">₹350/kg</p>
+
+                <button onclick="addToCart('Samalu',350)">
+                    Add to Cart
+                </button>
+            </div>
+
+             <div class="card">
+                <img
+                    src="korral.png"
+                    alt="Korralu"
+                >
+
+                <h3>Korralu</h3>
+
+                <p>Handmade tribal product</p>
+
+                <p class="price">₹350/kg</p>
+
+                <button onclick="addToCart('Korralu',350)">
+                    Add to Cart
+                </button>
+            </div>
+
+             <div class="card">
+                <img
+                    src="corn.png"
+                    alt="Corn"
+                >
+
+                <h3>Corn</h3>
+
+                <p>Handmade tribal product</p>
+
+                <p class="price">₹350/kg</p>
+
+                <button onclick="addToCart('Corn',350)">
+                    Add to Cart
+                </button>
+            </div>
+
+             <div class="card">
+                <img
+                    src="https://www.tastingtable.com/img/gallery/how-to-properly-store-fresh-tamarind-pods/l-intro-1683055334.jpg"
+                    alt="Tamarind"
+                >
+
+                <h3>Tamarind</h3>
+
+                <p>Handmade tribal product</p>
+
+                <p class="price">₹350/kg</p>
+
+                <button onclick="addToCart('Tamarind',350)">
+                    Add to Cart
+                </button>
+            </div>
+
+             <div class="card">
+                <img
+                    src="https://tiimg.tistatic.com/fp/1/008/550/tj-indian-peanut-groundnut-kernels-480.jpg"
+                    alt="Ground nut"
+                >
+
+                <h3>Ground nut</h3>
+
+                <p>Handmade tribal product</p>
+
+                <p class="price">₹350/kg</p>
+
+                <button onclick="addToCart('Ground nut',350)">
+                    Add to Cart
+                </button>
+            </div>
+
+             <div class="card">
+                <img
+                    src="https://sugunalasiri.com/wp-content/uploads/2020/11/IMG_1766-2048x1365.jpg"
+                    alt="Aamudham oil"
+                >
+
+                <h3>Aamudham oil</h3>
+
+                <p>Handmade tribal product</p>
+
+                <p class="price">₹350/kg</p>
+
+                <button onclick="addToCart('Aamudham oil',350)">
+                    Add to Cart
+                </button>
+            </div>
+
+             <div class="card">
+                <img
+                    src="pine.png"
+                    alt="Pineapple"
+                >
+
+                <h3>Pineapple</h3>
+
+                <p>Handmade tribal product</p>
+
+                <p class="price">₹350/kg</p>
+
+                <button onclick="addToCart('Pineapple',350)">
+                    Add to Cart
+                </button>
+            </div>
+
+             <div class="card">
+                <img
+                    src="https://cdn.britannica.com/86/157986-050-D84944DF/indian-spices.jpg"
+                    alt="Spices"
+                >
+
+                <h3>Spices</h3>
+
+                <p>Handmade tribal product</p>
+
+                <p class="price">₹350/kg</p>
+
+                <button onclick="addToCart('Spices',350)">
+                    Add to Cart
+                </button>
+            </div>
+
+
+
+             <div class="card">
+                <img
+                    src="chema.png"
+                    alt="Chema dhumpalu"
+                >
+
+                <h3>Chema dhumpalu</h3>
+
+                <p>Handmade tribal product</p>
+
+                <p class="price">₹350</p>
+
+                <button onclick="addToCart('Chema dhumpalu',350)">
+                    Add to Cart
+                </button>
+            </div>
+
+
+             <div class="card">
+                <img
+                    src="lemon.png"
+                    alt="Lemon"
+                >
+
+                <h3>Lemon</h3>
+
+                <p>Handmade tribal product</p>
+
+                <p class="price">₹350</p>
+
+                <button onclick="addToCart('Lemon',350)">
+                    Add to Cart
+                </button>
+            </div>
+
+             <div class="card">
+                <img
+                    src="amla.png"
+                    alt="Amla"
+                >
+
+                <h3>Amla</h3>
+
+                <p>Handmade tribal product</p>
+
+                <p class="price">₹350</p>
+
+                <button onclick="addToCart('Amla',350)">
+                    Add to Cart
+                </button>
+            </div>
+
+
+             <div class="card">
+                <img
+                    src="ram.png"
+                    alt="Ramapalam"
+                >
+
+                <h3>Rama palam</h3>
+
+                <p>Handmade tribal product</p>
+
+                <p class="price">₹350</p>
+
+                <button onclick="addToCart('Rama palam',350)">
+                    Add to Cart
+                </button>
+            </div>
+
+
+             <div class="card">
+                <img
+                    src="kothimeeera.png"
+                    alt="Coriander"
+                >
+
+                <h3>Coriander</h3>
+
+                <p>Handmade tribal product</p>
+
+                <p class="price">₹350</p>
+
+                <button onclick="addToCart('Coriander',350)">
+                    Add to Cart
+                </button>
+            </div>
+
+             <div class="card">
+                <img
+                    src="mint.png"
+                    alt="Mint"
+                >
+
+                <h3>Mint</h3>
+
+                <p>Handmade tribal product</p>
+
+                <p class="price">₹350</p>
+
+                <button onclick="addToCart('Mint',350)">
+                    Add to Cart
+                </button>
+            </div>
+
+             <div class="card">
+                <img
+                    src="neemp.png"
+                    alt="Neem powder"
+                >
+
+                <h3>Neem powder</h3>
+
+                <p>Handmade tribal product</p>
+
+                <p class="price">₹350</p>
+
+                <button onclick="addToCart('Neem powder',350)">
+                    Add to Cart
+                </button>
+            </div>
+
+
+             <div class="card">
+                <img
+                    src="crab.png"
+                    alt="Crab"
+                >
+
+                <h3>Crab</h3>
+
+                <p>Handmade tribal product</p>
+
+                <p class="price">₹350</p>
+
+                <button onclick="addToCart('Crab',350)">
+                    Add to Cart
+                </button>
+            </div>
+
+             <div class="card">
+                <img
+                    src="mas.png"
+                    alt="Mushrums"
+                >
+
+                <h3>Mushrums</h3>
+
+                <p>Handmade tribal product</p>
+
+                <p class="price">₹350</p>
+
+                <button onclick="addToCart('Mushrums',350)">
+                    Add to Cart
+                </button>
+            </div>
+
+             <div class="card">
+                <img
+                    src="kami.png"
+                    alt="Kangi pikkalu"
+                >
+
+                <h3>Kangi pikkalu</h3>
+
+                <p>Handmade tribal product</p>
+
+                <p class="price">₹350</p>
+
+                <button onclick="addToCart('Kangi pikkalu',350)">
+                    Add to Cart
+                </button>
+            </div>
+
+             <div class="card">
+                <img
+                    src="avise.png"
+                    alt="Adusulu"
+                >
+
+                <h3>Adusulu</h3>
+
+                <p>Handmade tribal product</p>
+
+                <p class="price">₹350</p>
+
+                <button onclick="addToCart('Adusulu',350)">
+                    Add to Cart
+                </button>
+            </div>
+
+             <div class="card">
+                <img
+                    src="jaggery.png"
+                    alt="Jaggery"
+                >
+
+                <h3>Jaggery</h3>
+
+                <p>Handmade tribal product</p>
+
+                <p class="price">₹350</p>
+
+                <button onclick="addToCart('Jaggery',350)">
+                    Add to Cart
+                </button>
+            </div>
+
+             <div class="card">
+                <img
+                    src="https://5.imimg.com/data5/ANDROID/Default/2024/1/374710642/GC/UN/SX/201116637/product-jpeg-500x500.jpg"
+                    alt="Chipuru"
+                >
+
+                <h3>Chipuru</h3>
+
+                <p>Handmade tribal product</p>
+
+                <p class="price">₹350</p>
+
+                <button onclick="addToCart('Chipuru',350)">
+                    Add to Cart
+                </button>
+            </div>
+
+             <div class="card">
+                <img
+                    src="mal.png"
+                    alt="Malberry"
+                >
+
+                <h3>Malberry</h3>
+
+                <p>Handmade tribal product</p>
+
+                <p class="price">₹350</p>
+
+                <button onclick="addToCart('Malberry',350)">
+                    Add to Cart
+                </button>
+            </div>
+
+
+             <div class="card">
+                <img
+                    src="https://thespicefactory.co.uk/wp-content/uploads/Black-Chickpeas.webp"
+                    alt="Black chikpeace"
+                >
+
+                <h3>Black chikpeace</h3>
+
+                <p>Handmade tribal product</p>
+
+                <p class="price">₹350</p>
+
+                <button onclick="addToCart('Black chikpeace',350)">
+                    Add to Cart
+                </button>
+            </div>
+
+             <div class="card">
+                <img
+                    src="https://img500.exportersindia.com/product_images/bc-500/2024/5/13296586/black-gram-1716377515-7441985.jpeg"
+                    alt="Black gram"
+                >
+
+                <h3>Black gram</h3>
+
+                <p>Handmade tribal product</p>
+
+                <p class="price">₹350</p>
+
+                <button onclick="addToCart('Black gram',350)">
+                    Add to Cart
+                </button>
+            </div>
+
+
+             <div class="card">
+                <img
+                    src="https://m.media-amazon.com/images/I/61r+6ha-WeL._AC_UF894,1000_QL80_.jpg"
+                    alt="Horse gram"
+                >
+
+                <h3>Horse gram</h3>
+
+                <p>Handmade tribal product</p>
+
+                <p class="price">₹350</p>
+
+                <button onclick="addToCart('Horse gram',350)">
+                    Add to Cart
+                </button>
+            </div>
+
+             <div class="card">
+                <img
+                    src="https://www.tokoindonesia.co.uk/wp-content/uploads/2020/05/kacang-ijo.png"
+                    alt="Green gram"
+                >
+
+                <h3>Green gram</h3>
+
+                <p>Handmade tribal product</p>
+
+                <p class="price">₹350</p>
+
+                <button onclick="addToCart('Green gram',350)">
+                    Add to Cart
+                </button>
+            </div>
+
+             <div class="card">
+                <img
+                    src="cash.png"
+                    alt="Cashew"
+                >
+
+                <h3>Cashew</h3>
+
+                <p>Handmade tribal product</p>
+
+                <p class="price">₹350</p>
+
+                <button onclick="addToCart('Cashew',350)">
+                    Add to Cart
+                </button>
+            </div>
+
+             <div class="card">
+                <img
+                    src="ilachi.png"
+                    alt="Ilachi"
+                >
+
+                <h3>Ilachi</h3>
+
+                <p>Handmade tribal product</p>
+
+                <p class="price">₹350</p>
+
+                <button onclick="addToCart('Ilachi',350)">
+                    Add to Cart
+                </button>
+            </div>
+
+             <div class="card">
+                <img
+                    src="black.png"
+                    alt="Black berry"
+                >
+
+                <h3>Black berry</h3>
+
+                <p>Handmade tribal product</p>
+
+                <p class="price">₹350</p>
+
+                <button onclick="addToCart('Black berry',350)">
+                    Add to Cart
+                </button>
+            </div>
+
+
+
+        </div>
+
+    </section>
+
+    <!-- Cart Dashboard -->
+    <section class="cart-dashboard" id="cart">
+        <h2>Your Cart Dashboard</h2>
+        <div class="cart-content">
+            <div id="cartItems" aria-live="polite"></div>
+            <div class="cart-summary" id="cartSummary" hidden>
+                <span id="cartTotal"></span>
+                <div class="cart-actions">
+                    <button class="clear-cart" type="button" onclick="clearCart()">Clear Cart</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Seller Upload -->
+    <section class="upload" id="upload">
+
+        <h2>📷 Sell Your Product</h2>
+
+        <input
+            type="text"
+            id="sellerName"
+            placeholder="Seller Name"
+        >
+
+        <input
+            type="text"
+            id="productName"
+            placeholder="Product Name"
+        >
+
+        <input
+            type="number"
+            id="productPrice"
+            placeholder="Your Price"
+        >
+
+        <select id="quality">
+            <option value="">Select Quality</option>
+            <option value="Good">Good</option>
+            <option value="Very Good">Very Good</option>
+            <option value="Premium">Premium</option>
+            <option value="Standard">Standard</option>
+        </select>
+
+        <input
+            type="file"
+            id="productImage"
+            accept="image/*"
+        >
+
+        <button onclick="suggestPrice()">
+            Suggest Price
+        </button>
+
+        <div id="result"></div>
+
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 Adivasi Haat</p>
+        <p>Supporting Tribal Communities 🌿</p>
+    </footer>
+
+
+    <script>
+        const cartStorageKey = "adivasiHaatCart";
+        let cartItems = [];
+
+        function loadCart() {
+            try {
+                const savedCart = localStorage.getItem(cartStorageKey);
+
+                if (!savedCart) {
+                    return;
+                }
+
+                const parsedCart = JSON.parse(savedCart);
+
+                if (!Array.isArray(parsedCart)) {
+                    throw new TypeError("Saved cart data is not a list.");
+                }
+
+                cartItems = parsedCart.filter(function(item) {
+                    return item &&
+                        typeof item.product === "string" &&
+                        Number.isFinite(item.price) &&
+                        item.price > 0 &&
+                        Number.isInteger(item.quantity) &&
+                        item.quantity > 0;
+                });
+            } catch (error) {
+                console.error("Unable to load the saved cart.", error);
+                alert("Your saved cart could not be loaded. A new cart will be started.");
+                cartItems = [];
+            }
+        }
+
+        function saveCart() {
+            try {
+                localStorage.setItem(cartStorageKey, JSON.stringify(cartItems));
+            } catch (error) {
+                console.error("Unable to save the cart.", error);
+                alert("Your cart was updated, but could not be saved in this browser.");
+            }
+        }
+
+        function renderCart() {
+            const cartContainer = document.getElementById("cartItems");
+            const cartSummary = document.getElementById("cartSummary");
+            const cartCount = document.getElementById("cartCount");
+            const totalQuantity = cartItems.reduce(function(total, item) {
+                return total + item.quantity;
+            }, 0);
+
+            cartCount.textContent = totalQuantity;
+            cartContainer.replaceChildren();
+
+            if (cartItems.length === 0) {
+                const emptyMessage = document.createElement("p");
+                emptyMessage.className = "cart-empty";
+                emptyMessage.textContent = "Your cart is empty. Add products from the marketplace above.";
+                cartContainer.appendChild(emptyMessage);
+                cartSummary.hidden = true;
+                return;
+            }
+
+            let totalPrice = 0;
+
+            cartItems.forEach(function(item, index) {
+                const lineTotal = item.price * item.quantity;
+                totalPrice += lineTotal;
+
+                const row = document.createElement("div");
+                row.className = "cart-item";
+
+                const details = document.createElement("div");
+                const name = document.createElement("h3");
+                name.textContent = item.product;
+                const price = document.createElement("p");
+                price.textContent = "₹" + item.price + " each · Subtotal: ₹" + lineTotal;
+                details.append(name, price);
+
+                const controls = document.createElement("div");
+                controls.className = "cart-item-controls";
+
+                const decreaseButton = document.createElement("button");
+                decreaseButton.type = "button";
+                decreaseButton.textContent = "−";
+                decreaseButton.setAttribute("aria-label", "Decrease " + item.product + " quantity");
+                decreaseButton.addEventListener("click", function() {
+                    changeCartQuantity(index, -1);
+                });
+
+                const quantity = document.createElement("span");
+                quantity.textContent = item.quantity;
+                quantity.setAttribute("aria-label", "Quantity");
+
+                const increaseButton = document.createElement("button");
+                increaseButton.type = "button";
+                increaseButton.textContent = "+";
+                increaseButton.setAttribute("aria-label", "Increase " + item.product + " quantity");
+                increaseButton.addEventListener("click", function() {
+                    changeCartQuantity(index, 1);
+                });
+
+                const removeButton = document.createElement("button");
+                removeButton.type = "button";
+                removeButton.className = "remove-item";
+                removeButton.textContent = "Remove";
+                removeButton.addEventListener("click", function() {
+                    removeFromCart(index);
+                });
+
+                controls.append(decreaseButton, quantity, increaseButton, removeButton);
+                row.append(details, controls);
+                cartContainer.appendChild(row);
+            });
+
+            document.getElementById("cartTotal").textContent =
+                "Total (" + totalQuantity + " items): ₹" + totalPrice;
+            cartSummary.hidden = false;
+        }
+
+        // Explore Products
+        function showProducts() {
+
+            document.getElementById("products").scrollIntoView({
+                behavior: "smooth"
+            });
+
+        }
+
+
+        // Add to Cart
+        function addToCart(product, price) {
+            const numericPrice = Number(price);
+
+            if (!product || !Number.isFinite(numericPrice) || numericPrice <= 0) {
+                alert("This product has invalid information and could not be added to your cart.");
+                return;
+            }
+
+            const existingItem = cartItems.find(function(item) {
+                return item.product === product;
+            });
+
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cartItems.push({ product: product, price: numericPrice, quantity: 1 });
+            }
+
+            saveCart();
+            renderCart();
+        }
+
+        function changeCartQuantity(index, change) {
+            const item = cartItems[index];
+
+            if (!item) {
+                return;
+            }
+
+            item.quantity += change;
+            if (item.quantity <= 0) {
+                cartItems.splice(index, 1);
+            }
+
+            saveCart();
+            renderCart();
+        }
+
+        function removeFromCart(index) {
+            if (index < 0 || index >= cartItems.length) {
+                return;
+            }
+
+            cartItems.splice(index, 1);
+            saveCart();
+            renderCart();
+        }
+
+        function clearCart() {
+            cartItems = [];
+            saveCart();
+            renderCart();
+        }
+
+
+        // Search Products
+        function searchProducts() {
+
+            let search =
+                document.getElementById("searchBox")
+                .value
+                .toLowerCase();
+
+            let cards =
+                document.querySelectorAll(".card");
+
+            cards.forEach(function(card) {
+
+                let product =
+                    card.querySelector("h3")
+                    .innerText
+                    .toLowerCase();
+
+                if (product.includes(search)) {
+
+                    card.style.display = "block";
+
+                } else {
+
+                    card.style.display = "none";
+
+                }
+
+            });
+
+        }
+
+
+        // Python-like Price Suggestion using JavaScript
+        function suggestPrice() {
+
+            let product =
+                document.getElementById("productName").value;
+
+            let price =
+                Number(document.getElementById("productPrice").value);
+
+            let quality =
+                document.getElementById("quality").value;
+
+            let result =
+                document.getElementById("result");
+
+
+            if (product === "" || price <= 0 || quality === "") {
+
+                result.innerHTML =
+                    "Please enter all details.";
+
+                return;
+            }
+
+
+            let suggestedPrice = price;
+
+
+            if (quality === "Good") {
+
+                suggestedPrice = price + 50;
+
+            }
+
+            else if (quality === "Very Good") {
+                suggestedPrice = price + 100;
+
+            }
+
+            else if (quality === "Premium") {
+
+                suggestedPrice = price + 150;
+
+            }
+            else if (quality === "Standard") {
+                suggestedPrice = price +200;
+
+            }
+            
+
+
+            result.innerHTML =
+                "Product: " + product +
+                "<br>Suggested Price: ₹" +
+                suggestedPrice;
+
+        }
+
+        loadCart();
+        renderCart();
+
+    </script>
+
+</body>
+</html>

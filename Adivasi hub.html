@@ -1,0 +1,1116 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Adivasi Haat</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f5f5f0;
+            color: #333;
+        }
+
+        /* Header */
+        header {
+            background: #31572c;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin-bottom: 8px;
+        }
+
+        nav {
+            margin-top: 15px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 12px;
+        }
+
+        /* Language Buttons */
+        .language-buttons {
+            margin-top: 15px;
+        }
+
+        .language-buttons button {
+            padding: 8px 15px;
+            margin: 3px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .language-buttons button:hover {
+            background: #d8e2c8;
+        }
+
+        /* Hero */
+        .hero {
+            background: #90a955;
+            color: white;
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        .hero h2 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .hero button {
+            background: #31572c;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            margin-top: 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Search */
+        .search {
+            text-align: center;
+            padding: 25px;
+        }
+
+        .search input {
+            width: 80%;
+            max-width: 500px;
+            padding: 12px;
+            border: 1px solid #aaa;
+            border-radius: 5px;
+        }
+
+        /* Products */
+        .products {
+            padding: 30px;
+        }
+
+        .products h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #31572c;
+        }
+
+        .product-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            width: 230px;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+            text-align: center;
+        }
+
+        .card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .card h3 {
+            margin: 10px 0;
+        }
+
+        .price {
+            color: #31572c;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .card button {
+            background: #31572c;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            margin-top: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Upload */
+        .upload {
+            background: white;
+            margin: 30px auto;
+            padding: 30px;
+            width: 90%;
+            max-width: 600px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .upload h2 {
+            text-align: center;
+            color: #31572c;
+            margin-bottom: 20px;
+        }
+
+        .upload input,
+        .upload select {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+        }
+
+        .upload button {
+            width: 100%;
+            padding: 12px;
+            background: #31572c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #result {
+            margin-top: 15px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        /* Footer */
+        footer {
+            background: #31572c;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+
+        <h1>🌿 <span data-en="ADIVASI HAAT" data-te="ఆదివాసీ హాట్">ADIVASI HAAT</span></h1>
+
+        <p data-en="Tribal Products Marketplace"
+           data-te="గిరిజన ఉత్పత్తుల మార్కెట్">Tribal Products Marketplace</p>
+
+        <nav>
+            <a href="#home" data-en="Home" data-te="హోమ్">Home</a>
+            <a href="#products" data-en="Products" data-te="ఉత్పత్తులు">Products</a>
+            <a href="#upload" data-en="Sell Product" data-te="ఉత్పత్తిని అమ్మండి">Sell Product</a>
+        </nav>
+
+        <!-- Language Options -->
+        <select id="language" onchange="changelanguage()">
+            <option value="en">English</option>
+            <option value="telugu">Telugu</option>
+        </select>
+        
+
+    </header>
+
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+
+        <h2
+            data-en="Buy Directly From Tribal Sellers"
+            data-te="గిరిజన విక్రేతల నుండి నేరుగా కొనండి">
+            Buy Directly From Tribal Sellers
+        </h2>
+
+        <p
+            data-en="Natural products directly from tribal communities"
+            data-te="గిరిజన సమాజాల నుండి నేరుగా సహజ ఉత్పత్తులు">
+            Natural products directly from tribal communities
+        </p>
+
+        <button onclick="showProducts()"
+            data-en="Explore Products"
+            data-te="ఉత్పత్తులను చూడండి">
+            Explore Products
+        </button>
+
+    </section>
+
+
+    <!-- Search -->
+    <section class="search">
+
+        <input
+            type="text"
+            id="searchBox"
+            placeholder="Search products..."
+            data-placeholder-en="Search products..."
+            data-placeholder-te="ఉత్పత్తులను వెతకండి..."
+            onkeyup="searchProducts()">
+
+    </section>
+
+
+    <!-- Products -->
+    <section class="products" id="products">
+
+        <h2
+            data-en="Our Products"
+            data-te="మా ఉత్పత్తులు">
+            Our Products
+        </h2>
+
+        <div class="product-container" id="productContainer">
+
+
+            <!-- Product 1 -->
+            <div class="card">
+
+                <img src="honey.png" alt="Honey">
+
+                <h3
+                    data-en="Natural Honey"
+                    data-te="సహజ తేనె">
+                    Natural Honey
+                </h3>
+
+                <p
+                    data-en="Pure forest honey"
+                    data-te="స్వచ్ఛమైన అడవి తేనె">
+                    Pure forest honey
+                </p>
+
+                <p class="price">₹450 / kg</p>
+
+                <button onclick="addToCart('Natural Honey',450)"
+                    data-en="Add to Cart"
+                    data-te="కార్ట్‌లో చేర్చండి">
+                    Add to Cart
+                </button>
+
+            </div>
+
+
+            <!-- Product 2 -->
+            <div class="card">
+
+                <img src="bamboo.png" alt="Bamboo">
+
+                <h3
+                    data-en="Bamboo"
+                    data-te="వెదురు">
+                    Bamboo
+                </h3>
+
+                <p
+                    data-en="Handmade tribal product"
+                    data-te="చేతితో తయారు చేసిన గిరిజన ఉత్పత్తి">
+                    Handmade tribal product
+                </p>
+
+                <p class="price">₹350</p>
+
+                <button onclick="addToCart('Bamboo',350)"
+                    data-en="Add to Cart"
+                    data-te="కార్ట్‌లో చేర్చండి">
+                    Add to Cart
+                </button>
+
+            </div>
+
+
+            <!-- Product 3 -->
+            <div class="card">
+
+                <img src="maloo.png" alt="Leaves">
+
+                <h3
+                    data-en="Adda Leaves"
+                    data-te="అడ్డా ఆకులు">
+                    Adda Leaves
+                </h3>
+
+                <p
+                    data-en="Natural forest leaves"
+                    data-te="సహజ అడవి ఆకులు">
+                    Natural forest leaves
+                </p>
+
+                <p class="price">₹200 / bundle</p>
+
+                <button onclick="addToCart('Adda Leaves',200)"
+                    data-en="Add to Cart"
+                    data-te="కార్ట్‌లో చేర్చండి">
+                    Add to Cart
+                </button>
+
+            </div>
+
+
+            <!-- Product 4 -->
+            <div class="card">
+
+                <img src="ippapuvvu.png" alt="Ippapuvvu">
+
+                <h3
+                    data-en="Ippapuvvu"
+                    data-te="ఇప్ప పువ్వు">
+                    Ippapuvvu
+                </h3>
+
+                <p
+                    data-en="Forest collected flowers"
+                    data-te="అడవిలో సేకరించిన పువ్వులు">
+                    Forest collected flowers
+                </p>
+
+                <p class="price">₹250 / kg</p>
+
+                <button onclick="addToCart('Ippapuvvu',250)"
+                    data-en="Add to Cart"
+                    data-te="కార్ట్‌లో చేర్చండి">
+                    Add to Cart
+                </button>
+
+            </div>
+
+
+            <!-- Product 5 -->
+            <div class="card">
+
+                <img src="coffee.png" alt="Coffee">
+
+                <h3
+                    data-en="Coffee"
+                    data-te="కాఫీ">
+                    Coffee
+                </h3>
+
+                <p
+                    data-en="Tribal coffee product"
+                    data-te="గిరిజన కాఫీ ఉత్పత్తి">
+                    Tribal coffee product
+                </p>
+
+                <p class="price">₹450</p>
+
+                <button onclick="addToCart('Coffee',450)"
+                    data-en="Add to Cart"
+                    data-te="కార్ట్‌లో చేర్చండి">
+                    Add to Cart
+                </button>
+
+            </div>
+
+
+            <!-- Product 6 -->
+            <div class="card">
+
+                <img src="pepper.png" alt="Miriyalu">
+
+                <h3
+                    data-en="Miriyalu"
+                    data-te="మిరియాలు">
+                    Miriyalu
+                </h3>
+
+                <p
+                    data-en="Natural forest product"
+                    data-te="సహజ అడవి ఉత్పత్తి">
+                    Natural forest product
+                </p>
+
+                <p class="price">₹750</p>
+
+                <button onclick="addToCart('Miriyalu',750)"
+                    data-en="Add to Cart"
+                    data-te="కార్ట్‌లో చేర్చండి">
+                    Add to Cart
+                </button>
+
+            </div>
+
+
+            <!-- Product 7 -->
+            <div class="card">
+
+                <img src="boddengulu.png" alt="Boddengulu">
+
+                <h3
+                    data-en="Boddengulu"
+                    data-te="బొడ్డెంగులు">
+                    Boddengulu
+                </h3>
+
+                <p
+                    data-en="Natural tribal product"
+                    data-te="సహజ గిరిజన ఉత్పత్తి">
+                    Natural tribal product
+                </p>
+
+                <p class="price">₹250</p>
+
+                <button onclick="addToCart('Boddengulu',250)"
+                    data-en="Add to Cart"
+                    data-te="కార్ట్‌లో చేర్చండి">
+                    Add to Cart
+                </button>
+
+            </div>
+
+
+            <!-- Product 8 -->
+            <div class="card">
+
+                <img src="eetha.png" alt="Eethapallu">
+
+                <h3
+                    data-en="Eethapallu"
+                    data-te="ఈత పళ్ళు">
+                    Eethapallu
+                </h3>
+
+                <p
+                    data-en="Natural tribal product"
+                    data-te="సహజ గిరిజన ఉత్పత్తి">
+                    Natural tribal product
+                </p>
+
+                <p class="price">₹300</p>
+
+                <button onclick="addToCart('Eethapallu',300)"
+                    data-en="Add to Cart"
+                    data-te="కార్ట్‌లో చేర్చండి">
+                    Add to Cart
+                </button>
+
+            </div>
+
+
+            <!-- Product 9 -->
+            <div class="card">
+
+                <img src="regi.png" alt="Regi Pallu">
+
+                <h3
+                    data-en="Regi Pallu"
+                    data-te="రేగి పళ్ళు">
+                    Regi Pallu
+                </h3>
+
+                <p
+                    data-en="Natural forest fruit"
+                    data-te="సహజ అడవి పండు">
+                    Natural forest fruit
+                </p>
+
+                <p class="price">₹150</p>
+
+                <button onclick="addToCart('Regi Pallu',150)"
+                    data-en="Add to Cart"
+                    data-te="కార్ట్‌లో చేర్చండి">
+                    Add to Cart
+                </button>
+
+            </div>
+
+
+            <!-- Product 10 -->
+            <div class="card">
+
+                <img src="lichee.png" alt="Leechipallu">
+
+                <h3
+                    data-en="Leechipallu"
+                    data-te="లీచీ పళ్ళు">
+                    Leechipallu
+                </h3>
+
+                <p
+                    data-en="Natural forest fruit"
+                    data-te="సహజ అడవి పండు">
+                    Natural forest fruit
+                </p>
+
+                <p class="price">₹450</p>
+
+                <button onclick="addToCart('Leechipallu',450)"
+                    data-en="Add to Cart"
+                    data-te="కార్ట్‌లో చేర్చండి">
+                    Add to Cart
+                </button>
+
+            </div>
+
+
+            <!-- Product 11 -->
+            <div class="card">
+
+                <img src="kanchedi.png" alt="Kanchedu Puvvulu">
+
+                <h3
+                    data-en="Kanchedu Puvvulu"
+                    data-te="కాంచేడు పువ్వులు">
+                    Kanchedu Puvvulu
+                </h3>
+
+                <p
+                    data-en="Natural flowers"
+                    data-te="సహజ పువ్వులు">
+                    Natural flowers
+                </p>
+
+                <p class="price">₹200</p>
+
+                <button onclick="addToCart('Kanchedu Puvvulu',200)"
+                    data-en="Add to Cart"
+                    data-te="కార్ట్‌లో చేర్చండి">
+                    Add to Cart
+                </button>
+
+            </div>
+
+
+            <!-- Product 12 -->
+            <div class="card">
+
+                <img src="straw.png" alt="Strawberry">
+
+                <h3
+                    data-en="Strawberry"
+                    data-te="స్ట్రాబెర్రీ">
+                    Strawberry
+                </h3>
+
+                <p
+                    data-en="Natural fruit"
+                    data-te="సహజ పండు">
+                    Natural fruit
+                </p>
+
+                <p class="price">₹350</p>
+
+                <button onclick="addToCart('Strawberry',350)"
+                    data-en="Add to Cart"
+                    data-te="కార్ట్‌లో చేర్చండి">
+                    Add to Cart
+                </button>
+
+            </div>
+
+
+            <!-- Extra Products -->
+            <div class="card">
+                <img src="bamboo.png" alt="Sun Flower">
+
+                <h3 data-en="Sun Flower" data-te="సూర్యకాంతి పువ్వు">
+                    Sun Flower
+                </h3>
+
+                <p data-en="Natural product" data-te="సహజ ఉత్పత్తి">
+                    Natural product
+                </p>
+
+                <p class="price">₹500</p>
+
+                <button onclick="addToCart('Sun Flower',500)"
+                    data-en="Add to Cart"
+                    data-te="కార్ట్‌లో చేర్చండి">
+                    Add to Cart
+                </button>
+            </div>
+
+
+            <div class="card">
+                <img src="bamboo.png" alt="Ginger">
+
+                <h3 data-en="Ginger" data-te="అల్లం">
+                    Ginger
+                </h3>
+
+                <p data-en="Natural forest product" data-te="సహజ అడవి ఉత్పత్తి">
+                    Natural forest product
+                </p>
+
+                <p class="price">₹350</p>
+
+                <button onclick="addToCart('Ginger',350)"
+                    data-en="Add to Cart"
+                    data-te="కార్ట్‌లో చేర్చండి">
+                    Add to Cart
+                </button>
+            </div>
+
+
+            <div class="card">
+                <img src="bamboo.png" alt="Turmeric">
+
+                <h3 data-en="Turmeric" data-te="పసుపు">
+                    Turmeric
+                </h3>
+
+                <p data-en="Natural product" data-te="సహజ ఉత్పత్తి">
+                    Natural product
+                </p>
+
+                <p class="price">₹350</p>
+
+                <button onclick="addToCart('Turmeric',350)"
+                    data-en="Add to Cart"
+                    data-te="కార్ట్‌లో చేర్చండి">
+                    Add to Cart
+                </button>
+            </div>
+
+
+            <div class="card">
+                <img src="bamboo.png" alt="Chikkudu Kayalu">
+
+                <h3 data-en="Chikkudu Kayalu" data-te="చిక్కుడు కాయలు">
+                    Chikkudu Kayalu
+                </h3>
+
+                <p data-en="Natural vegetable" data-te="సహజ కూరగాయ">
+                    Natural vegetable
+                </p>
+
+                <p class="price">₹350</p>
+
+                <button onclick="addToCart('Chikkudu Kayalu',350)"
+                    data-en="Add to Cart"
+                    data-te="కార్ట్‌లో చేర్చండి">
+                    Add to Cart
+                </button>
+            </div>
+
+
+            <div class="card">
+                <img src="bamboo.png" alt="Konda Kandhulu">
+
+                <h3 data-en="Konda Kandhulu" data-te="కొండ కందులు">
+                    Konda Kandhulu
+                </h3>
+
+                <p data-en="Natural forest product" data-te="సహజ అడవి ఉత్పత్తి">
+                    Natural forest product
+                </p>
+
+                <p class="price">₹350</p>
+
+                <button onclick="addToCart('Konda Kandhulu',350)"
+                    data-en="Add to Cart"
+                    data-te="కార్ట్‌లో చేర్చండి">
+                    Add to Cart
+                </button>
+            </div>
+
+
+            <div class="card">
+                <img src="bamboo.png" alt="Ragulu">
+
+                <h3 data-en="Ragulu" data-te="రాగులు">
+                    Ragulu
+                </h3>
+
+                <p data-en="Traditional millet" data-te="సాంప్రదాయ చిరుధాన్యం">
+                    Traditional millet
+                </p>
+
+                <p class="price">₹350</p>
+
+                <button onclick="addToCart('Ragulu',350)"
+                    data-en="Add to Cart"
+                    data-te="కార్ట్‌లో చేర్చండి">
+                    Add to Cart
+                </button>
+            </div>
+
+
+            <div class="card">
+                <img src="bamboo.png" alt="Samalu">
+
+                <h3 data-en="Samalu" data-te="సామలు">
+                    Samalu
+                </h3>
+
+                <p data-en="Traditional millet" data-te="సాంప్రదాయ చిరుధాన్యం">
+                    Traditional millet
+                </p>
+
+                <p class="price">₹350</p>
+
+                <button onclick="addToCart('Samalu',350)"
+                    data-en="Add to Cart"
+                    data-te="కార్ట్‌లో చేర్చండి">
+                    Add to Cart
+                </button>
+            </div>
+
+
+            <div class="card">
+                <img src="bamboo.png" alt="Korralu">
+
+                <h3 data-en="Korralu" data-te="కొర్రలు">
+                    Korralu
+                </h3>
+
+                <p data-en="Traditional millet" data-te="సాంప్రదాయ చిరుధాన్యం">
+                    Traditional millet
+                </p>
+
+                <p class="price">₹350</p>
+
+                <button onclick="addToCart('Korralu',350)"
+                    data-en="Add to Cart"
+                    data-te="కార్ట్‌లో చేర్చండి">
+                    Add to Cart
+                </button>
+            </div>
+
+
+            <div class="card">
+                <img src="bamboo.png" alt="Corn">
+
+                <h3 data-en="Corn" data-te="మొక్కజొన్న">
+                    Corn
+                </h3>
+
+                <p data-en="Natural farm product" data-te="సహజ వ్యవసాయ ఉత్పత్తి">
+                    Natural farm product
+                </p>
+
+                <p class="price">₹350</p>
+
+                <button onclick="addToCart('Corn',350)"
+                    data-en="Add to Cart"
+                    data-te="కార్ట్‌లో చేర్చండి">
+                    Add to Cart
+                </button>
+            </div>
+
+
+            <div class="card">
+                <img src="bamboo.png" alt="Tamarind">
+
+                <h3 data-en="Tamarind" data-te="చింతపండు">
+                    Tamarind
+                </h3>
+
+                <p data-en="Natural forest product" data-te="సహజ అడవి ఉత్పత్తి">
+                    Natural forest product
+                </p>
+
+                <p class="price">₹350</p>
+
+                <button onclick="addToCart('Tamarind',350)"
+                    data-en="Add to Cart"
+                    data-te="కార్ట్‌లో చేర్చండి">
+                    Add to Cart
+                </button>
+            </div>
+
+
+            <div class="card">
+                <img src="bamboo.png" alt="Ground Nut">
+
+                <h3 data-en="Ground Nut" data-te="వేరుశెనగ">
+                    Ground Nut
+                </h3>
+
+                <p data-en="Natural farm product" data-te="సహజ వ్యవసాయ ఉత్పత్తి">
+                    Natural farm product
+                </p>
+
+                <p class="price">₹350</p>
+
+                <button onclick="addToCart('Ground Nut',350)"
+                    data-en="Add to Cart"
+                    data-te="కార్ట్‌లో చేర్చండి">
+                    Add to Cart
+                </button>
+            </div>
+
+
+            <div class="card">
+                <img src="bamboo.png" alt="Pineapple">
+
+                <h3 data-en="Pineapple" data-te="అనాస పండు">
+                    Pineapple
+                </h3>
+
+                <p data-en="Natural fruit" data-te="సహజ పండు">
+                    Natural fruit
+                </p>
+
+                <p class="price">₹350</p>
+
+                <button onclick="addToCart('Pineapple',350)"
+                    data-en="Add to Cart"
+                    data-te="కార్ట్‌లో చేర్చండి">
+                    Add to Cart
+                </button>
+            </div>
+
+
+            <div class="card">
+                <img src="bamboo.png" alt="Spices">
+
+                <h3 data-en="Spices" data-te="సుగంధ ద్రవ్యాలు">
+                    Spices
+                </h3>
+
+                <p data-en="Natural spices" data-te="సహజ సుగంధ ద్రవ్యాలు">
+                    Natural spices
+                </p>
+
+                <p class="price">₹350</p>
+
+                <button onclick="addToCart('Spices',350)"
+                    data-en="Add to Cart"
+                    data-te="కార్ట్‌లో చేర్చండి">
+                    Add to Cart
+                </button>
+            </div>
+
+
+            <div class="card">
+                <img src="bamboo.png" alt="Lemon">
+
+                <h3 data-en="Lemon" data-te="నిమ్మకాయ">
+                    Lemon
+                </h3>
+
+                <p data-en="Natural fruit" data-te="సహజ పండు">
+                    Natural fruit
+                </p>
+
+                <p class="price">₹350</p>
+
+                <button onclick="addToCart('Lemon',350)"
+                    data-en="Add to Cart"
+                    data-te="కార్ట్‌లో చేర్చండి">
+                    Add to Cart
+                </button>
+            </div>
+
+
+            <div class="card">
+                <img src="bamboo.png" alt="Amla">
+
+                <h3 data-en="Amla" data-te="ఉసిరికాయ">
+                    Amla
+                </h3>
+
+                <p data-en="Natural forest fruit" data-te="సహజ అడవి పండు">
+                    Natural forest fruit
+                </p>
+
+                <p class="price">₹350</p>
+
+                <button onclick="addToCart('Amla',350)"
+                    data-en="Add to Cart"
+                    data-te="కార్ట్‌లో చేర్చండి">
+                    Add to Cart
+                </button>
+            </div>
+
+
+            <div class="card">
+                <img src="bamboo.png" alt="Coriander">
+
+                <h3 data-en="Coriander" data-te="కొత్తిమీర">
+                    Coriander
+                </h3>
+
+                <p data-en="Natural herb" data-te="సహజ ఆకుకూర">
+                    Natural herb
+                </p>
+
+                <p class="price">₹350</p>
+
+                <button onclick="addToCart('Coriander',350)"
+                    data-en="Add to Cart"
+                    data-te="కార్ట్‌లో చేర్చండి">
+                    Add to Cart
+                </button>
+            </div>
+
+
+            <div class="card">
+                <img src="bamboo.png" alt="Mint">
+
+                <h3 data-en="Mint" data-te="పుదీనా">
+                    Mint
+                </h3>
+
+                <p data-en="Natural herb" data-te="సహజ ఆకుకూర">
+                    Natural herb
+                </p>
+
+                <p class="price">₹350</p>
+
+                <button onclick="addToCart('Mint',350)"
+                    data-en="Add to Cart"
+                    data-te="కార్ట్‌లో చేర్చండి">
+                    Add to Cart
+                </button>
+            </div>
+
+
+            <div class="card">
+                <img src="bamboo.png" alt="Neem">
+
+                <h3 data-en="Neem" data-te="వేప">
+                    Neem
+                </h3>
+
+                <p data-en="Natural forest product" data-te="సహజ అడవి ఉత్పత్తి">
+                    Natural forest product
+                </p>
+
+                <p class="price">₹350</p>
+
+                <button onclick="addToCart('Neem',350)"
+                    data-en="Add to Cart"
+                    data-te="కార్ట్‌లో చేర్చండి">
+                    Add to Cart
+                </button>
+            </div>
+
+
+            <div class="card">
+                <img src="bamboo.png" alt="Mushrooms">
+
+                <h3 data-en="Mushrooms" data-te="పుట్టగొడుగులు">
+                    Mushrooms
+                </h3>
+
+                <p data-en="Natural forest product" data-te="సహజ అడవి ఉత్పత్తి">
+                    Natural forest product
+                </p>
+
+                <p class="price">₹350</p>
+
+                <button onclick="addToCart('Mushrooms',350)"
+                    data-en="Add to Cart"
+                    data-te="కార్ట్‌లో చేర్చండి">
+                    Add to Cart
+                </button>
+            </div>
+
+
+            <div class="card">
+                <img src="bamboo.png" alt="Jaggery">
+
+                <h3 data-en="Jaggery" data-te="బెల్లం">
+                    Jaggery
+                </h3>
+
+                <p data-en="Natural sweet product" data-te="సహజ తీపి ఉత్పత్తి">
+                    Natural sweet product
+                </p>
+
+                <p class="price">₹350</p>
+
+                <button onclick="addToCart('Jaggery',350)"
+                    data-en="Add to Cart"
+                    data-te="కార్ట్‌లో చేర్చండి">
+                    Add to Cart
+                </button>
+            </div>
+
+
+            <div class="card">
+                <img src="bamboo.png" alt="Cashew">
+
+                <h3 data-en="Cashew" data-te="జీడిపప్పు">
+                    Cashew
+                </h3>
+
+                <p data-en="Natural forest product" data-te="సహజ అడవి ఉత్పత్తి">
+                    Natural forest product
+                </p>
+
+                <p class="price">₹350</p>
+
+                <button onclick="addToCart('Cashew',350)"
+                    data-en="Add to Cart"
+                    data-te="కార్ట్‌లో చేర్చండి">
+                    Add to Cart
+                </button>
+            </div>
+
+
+            <div class="card">
+                <img src="bamboo.png" alt="Black Gram">
+
+                <h3 data-en="Black Gram" data-te="మినపప్పు">
+                    Black Gram
+                </h3>
+
+                <p data-en="Natural farm product" data-te="సహజ వ్యవసాయ ఉత్పత్తి">
+                    Natural farm product
+                </p>
+
+                <p class="price">₹350</p>
+
+                <button onclick="addToCart('Black Gram',350)"
+                    data-en="Add to Cart"
+                    data-te="కార్ట్‌లో చేర్చండి">
+                    Add to Cart
+                </button>
+            </div>
+
+
+            <div class="card">
+                <img src="bamboo.png" alt="Green Gram">
+
+                <h3 data-en="Green Gram" data-te="పెసరపప్పు">
+                    Green Gram
+                </h3>
+
+                <p data-en="Natural farm product" data-te="సహజ వ్యవసాయ ఉత్పత్తి">
+                    Natural farm product
+                </p>
+
+                <p class="price">₹350</p>
+
+                <button onclick="addToCart('Green Gram',350)"
+                    data-en="Add to Cart"
+                    data-te="కార్ట్‌లో చేర్చండి">
+                    Add to Cart
+                </button>
+            </div>
+
+
+            <div class="card">
+                <img src="bamboo.png" alt="Horse Gram">
+
+                <h3 data-en="Horse Gram" data-te="ఉలవలు">
+                    Horse Gram
+                </h3>
+
+                <p data-en="Traditional farm product" data-te="సాంప్రదాయ వ్యవసాయ ఉత్పత్తి">
+                    Traditional farm product
+                </p>
+
+                <p class="price">₹350</p>
+
+                <button onclick="addToCart('Horse Gram',350)"
+```

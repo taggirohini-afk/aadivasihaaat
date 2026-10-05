@@ -1,0 +1,2261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Adivasi Haat</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f5f5f0;
+            color: #333;
+        }
+
+        /* ================= HEADER ================= */
+
+        header {
+            background: #31572c;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin-bottom: 8px;
+        }
+
+        nav {
+            margin-top: 15px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* ================= HERO ================= */
+
+        .hero {
+
+            background-image:
+                linear-gradient(
+                    rgba(0,0,0,0.4),
+                    rgba(0,0,0,0.4)
+                ),
+                url("hero-bg.png");
+
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+
+            min-height: 450px;
+
+            padding: 100px 20px;
+
+            color: white;
+
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 18px;
+        }
+
+        .hero button {
+
+            background: #31572c;
+            color: white;
+
+            border: none;
+
+            padding: 12px 25px;
+
+            margin-top: 20px;
+
+            border-radius: 5px;
+
+            cursor: pointer;
+
+            font-size: 16px;
+        }
+
+        .hero button:hover {
+            background: #24451f;
+        }
+
+        /* ================= SEARCH ================= */
+
+        .search {
+            text-align: center;
+            padding: 25px;
+        }
+
+        .search input {
+
+            width: 80%;
+            max-width: 500px;
+
+            padding: 12px;
+
+            border: 1px solid #aaa;
+
+            border-radius: 5px;
+
+            font-size: 16px;
+        }
+
+        /* ================= PRODUCTS ================= */
+
+        .products {
+            padding: 30px;
+        }
+
+        .products h2 {
+
+            text-align: center;
+
+            margin-bottom: 25px;
+
+            color: #31572c;
+        }
+
+        .product-container {
+
+            display: flex;
+
+            justify-content: center;
+
+            flex-wrap: wrap;
+
+            gap: 20px;
+        }
+
+        .card {
+
+            background: white;
+
+            width: 230px;
+
+            padding: 15px;
+
+            border-radius: 10px;
+
+            box-shadow:
+                0 3px 10px rgba(0,0,0,0.15);
+
+            text-align: center;
+        }
+
+        .card img {
+
+            width: 100%;
+
+            height: 150px;
+
+            object-fit: cover;
+
+            border-radius: 8px;
+        }
+
+        .card h3 {
+            margin: 10px 0;
+        }
+
+        .price {
+
+            color: #31572c;
+
+            font-size: 20px;
+
+            font-weight: bold;
+        }
+
+        .card button {
+
+            background: #31572c;
+
+            color: white;
+
+            border: none;
+
+            padding: 10px 15px;
+
+            margin-top: 10px;
+
+            border-radius: 5px;
+
+            cursor: pointer;
+        }
+
+        .card button:hover {
+            background: #24451f;
+        }
+
+        /* ================= CART ================= */
+
+        .cart-dashboard {
+
+            padding: 30px;
+
+            background: #edf2e8;
+        }
+
+        .cart-dashboard h2 {
+
+            text-align: center;
+
+            margin-bottom: 20px;
+
+            color: #31572c;
+        }
+
+        .cart-content {
+
+            max-width: 800px;
+
+            margin: 0 auto;
+        }
+
+        .cart-item {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 16px;
+
+            padding: 16px;
+
+            margin-bottom: 12px;
+
+            background: white;
+
+            border-radius: 8px;
+
+            box-shadow:
+                0 2px 6px rgba(0,0,0,0.1);
+        }
+
+        .cart-item h3 {
+            margin-bottom: 6px;
+        }
+
+        .cart-item-controls {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+        }
+
+        .cart-item-controls button,
+        .cart-actions button {
+
+            padding: 8px 12px;
+
+            background: #31572c;
+
+            color: white;
+
+            border: none;
+
+            border-radius: 5px;
+
+            cursor: pointer;
+        }
+
+        .cart-item-controls .remove-item,
+        .cart-actions .clear-cart {
+
+            background: #8b2f25;
+        }
+
+        .cart-summary {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 16px;
+
+            margin-top: 20px;
+
+            font-size: 1.15rem;
+
+            font-weight: bold;
+        }
+
+        .cart-actions {
+
+            display: flex;
+
+            gap: 10px;
+
+            flex-wrap: wrap;
+        }
+
+        .cart-actions .place-order {
+
+            background: #31572c;
+        }
+
+        #cartSummary[hidden] {
+            display: none;
+        }
+
+        .cart-empty {
+
+            padding: 20px;
+
+            text-align: center;
+
+            background: white;
+
+            border-radius: 8px;
+        }
+
+        /* ================= ORDER ================= */
+
+        .order-section {
+
+            padding: 30px;
+
+            background: #f5f5f0;
+        }
+
+        .order-box {
+
+            background: white;
+
+            width: 90%;
+
+            max-width: 600px;
+
+            margin: 0 auto;
+
+            padding: 30px;
+
+            border-radius: 10px;
+
+            box-shadow:
+                0 3px 10px rgba(0,0,0,0.15);
+        }
+
+        .order-box h2 {
+
+            text-align: center;
+
+            color: #31572c;
+
+            margin-bottom: 10px;
+        }
+
+        .order-note {
+
+            text-align: center;
+
+            margin-bottom: 20px;
+        }
+
+        .order-box input,
+        .order-box textarea,
+        .order-box select {
+
+            width: 100%;
+
+            padding: 12px;
+
+            margin: 8px 0;
+
+            border: 1px solid #aaa;
+
+            border-radius: 5px;
+
+            font-size: 15px;
+        }
+
+        .order-box textarea {
+
+            height: 100px;
+
+            resize: vertical;
+        }
+
+        .order-box button {
+
+            width: 100%;
+
+            padding: 12px;
+
+            margin-top: 10px;
+
+            background: #31572c;
+
+            color: white;
+
+            border: none;
+
+            border-radius: 5px;
+
+            cursor: pointer;
+
+            font-size: 16px;
+        }
+
+        .order-box button:hover {
+
+            background: #24451f;
+        }
+
+        #orderResult {
+
+            margin-top: 18px;
+
+            padding: 15px;
+
+            text-align: center;
+
+            font-weight: bold;
+
+            border-radius: 5px;
+
+            line-height: 1.7;
+        }
+
+        /* ================= SELL PRODUCT ================= */
+
+        .upload {
+
+            background: white;
+
+            margin: 30px auto;
+
+            padding: 30px;
+
+            width: 90%;
+
+            max-width: 600px;
+
+            border-radius: 10px;
+
+            box-shadow:
+                0 3px 10px rgba(0,0,0,0.15);
+        }
+
+        .upload h2 {
+
+            text-align: center;
+
+            color: #31572c;
+
+            margin-bottom: 20px;
+        }
+
+        .upload input,
+        .upload select {
+
+            width: 100%;
+
+            padding: 10px;
+
+            margin: 8px 0;
+        }
+
+        .upload button {
+
+            width: 100%;
+
+            padding: 12px;
+
+            background: #31572c;
+
+            color: white;
+
+            border: none;
+
+            border-radius: 5px;
+
+            cursor: pointer;
+        }
+
+        #result {
+
+            margin-top: 15px;
+
+            text-align: center;
+
+            font-weight: bold;
+
+            line-height: 1.7;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+
+            background: #31572c;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 20px;
+
+            margin-top: 30px;
+        }
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 520px) {
+
+            .cart-item,
+            .cart-summary {
+
+                align-items: flex-start;
+
+                flex-direction: column;
+            }
+
+            nav a {
+
+                display: inline-block;
+
+                margin: 5px;
+            }
+
+            .hero h2 {
+                font-size: 26px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================= HEADER ================= -->
+
+<header>
+
+    <h1>🌿 ADIVASI HAAT</h1>
+
+    <p>Tribal Products Marketplace</p>
+
+    <nav>
+
+        <a href="#home">
+            Home
+        </a>
+
+        <a href="#products">
+            Products
+        </a>
+
+        <a href="#cart">
+            Cart
+            (<span id="cartCount">0</span>)
+        </a>
+
+        <a href="#checkout">
+            Order
+        </a>
+
+        <a href="#upload">
+            Sell Product
+        </a>
+
+    </nav>
+
+</header>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero" id="home">
+
+    <h2>
+        Buy Directly From Tribal Sellers
+    </h2>
+
+    <p>
+        Natural products directly from tribal communities
+    </p>
+
+    <button onclick="showProducts()">
+        Explore Products
+    </button>
+
+</section>
+
+
+<!-- ================= SEARCH ================= -->
+
+<section class="search">
+
+    <input
+        type="text"
+        id="searchBox"
+        placeholder="Search products..."
+        onkeyup="searchProducts()"
+    >
+
+</section>
+
+
+<!-- ================= PRODUCTS ================= -->
+
+<section class="products" id="products">
+
+    <h2>Our Products</h2>
+
+    <div
+        class="product-container"
+        id="productContainer"
+    ></div>
+
+</section>
+
+
+<!-- ================= CART ================= -->
+
+<section
+    class="cart-dashboard"
+    id="cart"
+>
+
+    <h2>
+        Your Cart Dashboard
+    </h2>
+
+    <div class="cart-content">
+
+        <div
+            id="cartItems"
+            aria-live="polite"
+        ></div>
+
+        <div
+            class="cart-summary"
+            id="cartSummary"
+            hidden
+        >
+
+            <span id="cartTotal"></span>
+
+            <div class="cart-actions">
+
+                <button
+                    class="place-order"
+                    type="button"
+                    onclick="goToCheckout()"
+                >
+                    Place Order
+                </button>
+
+                <button
+                    class="clear-cart"
+                    type="button"
+                    onclick="clearCart()"
+                >
+                    Clear Cart
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= CHECKOUT ================= -->
+
+<section
+    class="order-section"
+    id="checkout"
+>
+
+    <div class="order-box">
+
+        <h2>
+            🛒 Place Your Order
+        </h2>
+
+        <p class="order-note">
+            Enter your delivery details and place your order.
+        </p>
+
+        <input
+            type="text"
+            id="customerName"
+            placeholder="Your Name"
+        >
+
+        <input
+            type="tel"
+            id="customerPhone"
+            placeholder="Phone Number"
+            maxlength="10"
+        >
+
+        <textarea
+            id="customerAddress"
+            placeholder="Delivery Address"
+        ></textarea>
+
+        <select id="paymentMethod">
+
+            <option value="">
+                Select Payment Method
+            </option>
+
+            <option value="Cash on Delivery">
+                Cash on Delivery
+            </option>
+
+            <option value="UPI">
+                UPI
+            </option>
+
+        </select>
+
+        <button
+            type="button"
+            onclick="placeOrder()"
+        >
+            Place Order
+        </button>
+
+        <div id="orderResult"></div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= SELL PRODUCT ================= -->
+
+<section
+    class="upload"
+    id="upload"
+>
+
+    <h2>
+        📷 Sell Your Product
+    </h2>
+
+    <input
+        type="text"
+        id="sellerName"
+        placeholder="Seller Name"
+    >
+
+    <input
+        type="text"
+        id="productName"
+        placeholder="Product Name"
+    >
+
+    <input
+        type="number"
+        id="productPrice"
+        placeholder="Your Price"
+    >
+
+    <select id="quality">
+
+        <option value="">
+            Select Quality
+        </option>
+
+        <option value="Good">
+            Good
+        </option>
+
+        <option value="Very Good">
+            Very Good
+        </option>
+
+        <option value="Premium">
+            Premium
+        </option>
+
+        <option value="Standard">
+            Standard
+        </option>
+
+    </select>
+
+    <input
+        type="file"
+        id="productImage"
+        accept="image/*"
+    >
+
+    <button onclick="suggestPrice()">
+        Suggest Price
+    </button>
+
+    <div id="result"></div>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <p>
+        © 2026 Adivasi Haat
+    </p>
+
+    <p>
+        Supporting Tribal Communities 🌿
+    </p>
+
+</footer>
+
+
+<script>
+
+/* =====================================================
+   PRODUCT DATA
+===================================================== */
+
+const products = [
+
+    {
+        name: "Natural Honey",
+        description: "Pure forest honey",
+        price: 450,
+        image: "honey.png"
+    },
+
+    {
+        name: "Bamboo",
+        description: "Handmade tribal product",
+        price: 350,
+        image: "bamboo.png"
+    },
+
+    {
+        name: "Adda Leaves",
+        description: "Natural forest leaves",
+        price: 200,
+        image: "maloo.png"
+    },
+
+    {
+        name: "Ippapuvvu",
+        description: "Forest collected flowers",
+        price: 250,
+        image: "ippapuvvu.png"
+    },
+
+    {
+        name: "Coffee",
+        description: "Handmade tribal product",
+        price: 450,
+        image: "coffee.png"
+    },
+
+    {
+        name: "Miriyalu",
+        description: "Handmade tribal product",
+        price: 750,
+        image: "pepper.png"
+    },
+
+    {
+        name: "Boddengulu",
+        description: "Handmade tribal product",
+        price: 250,
+        image: "boddengulu.png"
+    },
+
+    {
+        name: "Eethapallu",
+        description: "Handmade tribal product",
+        price: 300,
+        image: "eetha.png"
+    },
+
+    {
+        name: "Regi Pallu",
+        description: "Handmade tribal product",
+        price: 150,
+        image: "regi.png"
+    },
+
+    {
+        name: "Leechipallu",
+        description: "Handmade tribal product",
+        price: 450,
+        image: "lichee.png"
+    },
+
+    {
+        name: "Kanchedu Puvvulu",
+        description: "Handmade tribal product",
+        price: 200,
+        image: "kanchedi.png"
+    },
+
+    {
+        name: "Strawbarry",
+        description: "Handmade tribal product",
+        price: 350,
+        image: "straw.png"
+    },
+
+    {
+        name: "Sun Flower",
+        description: "Handmade tribal product",
+        price: 500,
+        image: "sunflower.jpg"
+    },
+
+    {
+        name: "Seethapallam",
+        description: "Handmade tribal product",
+        price: 450,
+        image: "seethapallam.jpg"
+    },
+
+    {
+        name: "Jackfruit",
+        description: "Handmade tribal product",
+        price: 300,
+        image: "jackfruit.jpg"
+    },
+
+    {
+        name: "Kidney Beans",
+        description: "Handmade tribal product",
+        price: 350,
+        image: "kidney.jpg"
+    },
+
+    {
+        name: "Ginger",
+        description: "Handmade tribal product",
+        price: 350,
+        image: "ginger.jpg"
+    },
+
+    {
+        name: "Pumpkin",
+        description: "Handmade tribal product",
+        price: 350,
+        image: "pumpkin.jpg"
+    },
+
+    {
+        name: "Pumpkin Leaves",
+        description: "Handmade tribal product",
+        price: 350,
+        image: "pumpleaves.png"
+    },
+
+    {
+        name: "Pumpkin Seeds",
+        description: "Handmade tribal product",
+        price: 350,
+        image: "pumpkin-seeds.jpg"
+    },
+
+    {
+        name: "Pendalam Dhumpalu",
+        description: "Handmade tribal product",
+        price: 350,
+        image: "pendalam.png"
+    },
+
+    {
+        name: "Sweet Potato",
+        description: "Handmade tribal product",
+        price: 350,
+        image: "sweet.png"
+    },
+
+    {
+        name: "Turmeric",
+        description: "Handmade tribal product",
+        price: 350,
+        image: "turmer.png"
+    },
+
+    {
+        name: "Chikkudu Kayalu",
+        description: "Handmade tribal product",
+        price: 350,
+        image: "chikkudu.png"
+    },
+
+    {
+        name: "Konda Kandhulu",
+        description: "Handmade tribal product",
+        price: 350,
+        image: "konda.png"
+    },
+
+    {
+        name: "Ragulu",
+        description: "Handmade tribal product",
+        price: 350,
+        image: "ragi.png"
+    },
+
+    {
+        name: "Samalu",
+        description: "Handmade tribal product",
+        price: 350,
+        image: "samalu.png"
+    },
+
+    {
+        name: "Korralu",
+        description: "Handmade tribal product",
+        price: 350,
+        image: "korral.png"
+    },
+
+    {
+        name: "Corn",
+        description: "Handmade tribal product",
+        price: 350,
+        image: "corn.png"
+    },
+
+    {
+        name: "Tamarind",
+        description: "Handmade tribal product",
+        price: 350,
+        image: "tamarind.jpg"
+    },
+
+    {
+        name: "Ground Nut",
+        description: "Handmade tribal product",
+        price: 350,
+        image: "groundnut.jpg"
+    },
+
+    {
+        name: "Aamudham Oil",
+        description: "Handmade tribal product",
+        price: 350,
+        image: "aamudham.jpg"
+    },
+
+    {
+        name: "Pineapple",
+        description: "Handmade tribal product",
+        price: 350,
+        image: "pine.png"
+    },
+
+    {
+        name: "Spices",
+        description: "Handmade tribal product",
+        price: 350,
+        image: "spices.jpg"
+    },
+
+    {
+        name: "Chema Dhumpalu",
+        description: "Handmade tribal product",
+        price: 350,
+        image: "chema.png"
+    },
+
+    {
+        name: "Lemon",
+        description: "Handmade tribal product",
+        price: 350,
+        image: "lemon.png"
+    },
+
+    {
+        name: "Amla",
+        description: "Handmade tribal product",
+        price: 350,
+        image: "amla.png"
+    },
+
+    {
+        name: "Rama Palam",
+        description: "Handmade tribal product",
+        price: 350,
+        image: "ram.png"
+    },
+
+    {
+        name: "Coriander",
+        description: "Handmade tribal product",
+        price: 350,
+        image: "kothimeeera.png"
+    },
+
+    {
+        name: "Mint",
+        description: "Handmade tribal product",
+        price: 350,
+        image: "mint.png"
+    },
+
+    {
+        name: "Neem Powder",
+        description: "Handmade tribal product",
+        price: 350,
+        image: "neemp.png"
+    },
+
+    {
+        name: "Crab",
+        description: "Handmade tribal product",
+        price: 350,
+        image: "crab.png"
+    },
+
+    {
+        name: "Mushrooms",
+        description: "Handmade tribal product",
+        price: 350,
+        image: "mas.png"
+    },
+
+    {
+        name: "Kangi Pikkalu",
+        description: "Handmade tribal product",
+        price: 350,
+        image: "kami.png"
+    },
+
+    {
+        name: "Adusulu",
+        description: "Handmade tribal product",
+        price: 350,
+        image: "avise.png"
+    },
+
+    {
+        name: "Jaggery",
+        description: "Handmade tribal product",
+        price: 350,
+        image: "jaggery.png"
+    },
+
+    {
+        name: "Chipuru",
+        description: "Handmade tribal product",
+        price: 350,
+        image: "chipuru.jpg"
+    },
+
+    {
+        name: "Malberry",
+        description: "Handmade tribal product",
+        price: 350,
+        image: "mal.png"
+    },
+
+    {
+        name: "Black Chickpea",
+        description: "Handmade tribal product",
+        price: 350,
+        image: "black-chickpea.webp"
+    },
+
+    {
+        name: "Black Gram",
+        description: "Handmade tribal product",
+        price: 350,
+        image: "black-gram.jpg"
+    },
+
+    {
+        name: "Horse Gram",
+        description: "Handmade tribal product",
+        price: 350,
+        image: "horse-gram.jpg"
+    },
+
+    {
+        name: "Green Gram",
+        description: "Handmade tribal product",
+        price: 350,
+        image: "green-gram.png"
+    },
+
+    {
+        name: "Cashew",
+        description: "Handmade tribal product",
+        price: 350,
+        image: "cash.png"
+    },
+
+    {
+        name: "Ilachi",
+        description: "Handmade tribal product",
+        price: 350,
+        image: "ilachi.png"
+    },
+
+    {
+        name: "Black Berry",
+        description: "Handmade tribal product",
+        price: 350,
+        image: "black.png"
+    }
+
+];
+
+
+/* =====================================================
+   CART
+===================================================== */
+
+const cartStorageKey =
+    "adivasiHaatCart";
+
+let cartItems = [];
+
+
+/* =====================================================
+   LOAD CART
+===================================================== */
+
+function loadCart() {
+
+    try {
+
+        const savedCart =
+            localStorage.getItem(cartStorageKey);
+
+        if (!savedCart) {
+            return;
+        }
+
+        const parsedCart =
+            JSON.parse(savedCart);
+
+        if (!Array.isArray(parsedCart)) {
+            return;
+        }
+
+        cartItems =
+            parsedCart.filter(function(item) {
+
+                return item &&
+                    typeof item.product === "string" &&
+                    Number.isFinite(item.price) &&
+                    item.price > 0 &&
+                    Number.isInteger(item.quantity) &&
+                    item.quantity > 0;
+
+            });
+
+    }
+
+    catch(error) {
+
+        console.error(
+            "Unable to load cart",
+            error
+        );
+
+        cartItems = [];
+
+    }
+
+}
+
+
+/* =====================================================
+   SAVE CART
+===================================================== */
+
+function saveCart() {
+
+    try {
+
+        localStorage.setItem(
+            cartStorageKey,
+            JSON.stringify(cartItems)
+        );
+
+    }
+
+    catch(error) {
+
+        console.error(
+            "Unable to save cart",
+            error
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   DISPLAY PRODUCTS
+===================================================== */
+
+function displayProducts(list = products) {
+
+    const container =
+        document.getElementById(
+            "productContainer"
+        );
+
+    container.innerHTML = "";
+
+
+    list.forEach(function(product) {
+
+        const card =
+            document.createElement("div");
+
+        card.className = "card";
+
+
+        const image =
+            document.createElement("img");
+
+        image.src = product.image;
+
+        image.alt = product.name;
+
+
+        image.onerror = function() {
+
+            this.src =
+                "https://via.placeholder.com/230x150?text=" +
+                encodeURIComponent(product.name);
+
+        };
+
+
+        const title =
+            document.createElement("h3");
+
+        title.textContent =
+            product.name;
+
+
+        const description =
+            document.createElement("p");
+
+        description.textContent =
+            product.description;
+
+
+        const price =
+            document.createElement("p");
+
+        price.className = "price";
+
+        price.textContent =
+            "₹" + product.price;
+
+
+        const button =
+            document.createElement("button");
+
+        button.textContent =
+            "Add to Cart";
+
+
+        button.onclick = function() {
+
+            addToCart(
+                product.name,
+                product.price
+            );
+
+        };
+
+
+        card.appendChild(image);
+
+        card.appendChild(title);
+
+        card.appendChild(description);
+
+        card.appendChild(price);
+
+        card.appendChild(button);
+
+        container.appendChild(card);
+
+    });
+
+}
+
+
+/* =====================================================
+   ADD TO CART
+===================================================== */
+
+function addToCart(product, price) {
+
+    const numericPrice =
+        Number(price);
+
+
+    if (
+        !product ||
+        !Number.isFinite(numericPrice) ||
+        numericPrice <= 0
+    ) {
+
+        alert(
+            "Invalid product information."
+        );
+
+        return;
+    }
+
+
+    const existingItem =
+        cartItems.find(function(item) {
+
+            return item.product === product;
+
+        });
+
+
+    if (existingItem) {
+
+        existingItem.quantity += 1;
+
+    }
+
+    else {
+
+        cartItems.push({
+
+            product: product,
+
+            price: numericPrice,
+
+            quantity: 1
+
+        });
+
+    }
+
+
+    saveCart();
+
+    renderCart();
+
+
+    alert(
+        product + " added to cart!"
+    );
+
+}
+
+
+/* =====================================================
+   RENDER CART
+===================================================== */
+
+function renderCart() {
+
+    const cartContainer =
+        document.getElementById(
+            "cartItems"
+        );
+
+    const cartSummary =
+        document.getElementById(
+            "cartSummary"
+        );
+
+    const cartCount =
+        document.getElementById(
+            "cartCount"
+        );
+
+
+    const totalQuantity =
+        cartItems.reduce(
+
+            function(total, item) {
+
+                return total +
+                    item.quantity;
+
+            },
+
+            0
+        );
+
+
+    cartCount.textContent =
+        totalQuantity;
+
+
+    cartContainer.innerHTML = "";
+
+
+    if (cartItems.length === 0) {
+
+        const emptyMessage =
+            document.createElement("p");
+
+        emptyMessage.className =
+            "cart-empty";
+
+        emptyMessage.textContent =
+            "Your cart is empty. Add products from the marketplace above.";
+
+        cartContainer.appendChild(
+            emptyMessage
+        );
+
+        cartSummary.hidden = true;
+
+        return;
+
+    }
+
+
+    let totalPrice = 0;
+
+
+    cartItems.forEach(
+        function(item, index) {
+
+            const lineTotal =
+                item.price *
+                item.quantity;
+
+
+            totalPrice +=
+                lineTotal;
+
+
+            const row =
+                document.createElement("div");
+
+            row.className =
+                "cart-item";
+
+
+            const details =
+                document.createElement("div");
+
+
+            const name =
+                document.createElement("h3");
+
+            name.textContent =
+                item.product;
+
+
+            const price =
+                document.createElement("p");
+
+            price.textContent =
+                "₹" +
+                item.price +
+                " each | Subtotal: ₹" +
+                lineTotal;
+
+
+            details.appendChild(name);
+
+            details.appendChild(price);
+
+
+            const controls =
+                document.createElement("div");
+
+            controls.className =
+                "cart-item-controls";
+
+
+            const decreaseButton =
+                document.createElement("button");
+
+            decreaseButton.textContent =
+                "−";
+
+
+            decreaseButton.onclick =
+                function() {
+
+                    changeCartQuantity(
+                        index,
+                        -1
+                    );
+
+                };
+
+
+            const quantity =
+                document.createElement("span");
+
+            quantity.textContent =
+                item.quantity;
+
+
+            const increaseButton =
+                document.createElement("button");
+
+            increaseButton.textContent =
+                "+";
+
+
+            increaseButton.onclick =
+                function() {
+
+                    changeCartQuantity(
+                        index,
+                        1
+                    );
+
+                };
+
+
+            const removeButton =
+                document.createElement("button");
+
+            removeButton.textContent =
+                "Remove";
+
+            removeButton.className =
+                "remove-item";
+
+
+            removeButton.onclick =
+                function() {
+
+                    removeFromCart(index);
+
+                };
+
+
+            controls.appendChild(
+                decreaseButton
+            );
+
+            controls.appendChild(
+                quantity
+            );
+
+            controls.appendChild(
+                increaseButton
+            );
+
+            controls.appendChild(
+                removeButton
+            );
+
+
+            row.appendChild(details);
+
+            row.appendChild(controls);
+
+
+            cartContainer.appendChild(row);
+
+        }
+    );
+
+
+    document.getElementById(
+        "cartTotal"
+    ).textContent =
+
+        "Total (" +
+        totalQuantity +
+        " items): ₹" +
+        totalPrice;
+
+
+    cartSummary.hidden = false;
+
+}
+
+
+/* =====================================================
+   CHANGE QUANTITY
+===================================================== */
+
+function changeCartQuantity(
+    index,
+    change
+) {
+
+    const item =
+        cartItems[index];
+
+
+    if (!item) {
+        return;
+    }
+
+
+    item.quantity += change;
+
+
+    if (item.quantity <= 0) {
+
+        cartItems.splice(
+            index,
+            1
+        );
+
+    }
+
+
+    saveCart();
+
+    renderCart();
+
+}
+
+
+/* =====================================================
+   REMOVE PRODUCT
+===================================================== */
+
+function removeFromCart(index) {
+
+    if (
+        index < 0 ||
+        index >= cartItems.length
+    ) {
+
+        return;
+    }
+
+
+    cartItems.splice(
+        index,
+        1
+    );
+
+
+    saveCart();
+
+    renderCart();
+
+}
+
+
+/* =====================================================
+   CLEAR CART
+===================================================== */
+
+function clearCart() {
+
+    if (cartItems.length === 0) {
+
+        return;
+    }
+
+
+    const confirmClear =
+        confirm(
+            "Are you sure you want to clear the cart?"
+        );
+
+
+    if (!confirmClear) {
+        return;
+    }
+
+
+    cartItems = [];
+
+
+    saveCart();
+
+    renderCart();
+
+}
+
+
+/* =====================================================
+   EXPLORE PRODUCTS
+===================================================== */
+
+function showProducts() {
+
+    document
+        .getElementById("products")
+        .scrollIntoView({
+
+            behavior: "smooth"
+
+        });
+
+}
+
+
+/* =====================================================
+   SEARCH PRODUCTS
+===================================================== */
+
+function searchProducts() {
+
+    const search =
+        document
+            .getElementById("searchBox")
+            .value
+            .toLowerCase()
+            .trim();
+
+
+    const filteredProducts =
+        products.filter(
+            function(product) {
+
+                return product.name
+                    .toLowerCase()
+                    .includes(search);
+
+            }
+        );
+
+
+    displayProducts(
+        filteredProducts
+    );
+
+}
+
+
+/* =====================================================
+   GO TO CHECKOUT
+===================================================== */
+
+function goToCheckout() {
+
+    if (cartItems.length === 0) {
+
+        alert(
+            "Your cart is empty. Please add a product first."
+        );
+
+        return;
+
+    }
+
+
+    document
+        .getElementById("checkout")
+        .scrollIntoView({
+
+            behavior: "smooth"
+
+        });
+
+}
+
+
+/* =====================================================
+   PLACE ORDER
+===================================================== */
+
+function placeOrder() {
+
+    const customerName =
+        document
+            .getElementById("customerName")
+            .value
+            .trim();
+
+
+    const customerPhone =
+        document
+            .getElementById("customerPhone")
+            .value
+            .trim();
+
+
+    const customerAddress =
+        document
+            .getElementById("customerAddress")
+            .value
+            .trim();
+
+
+    const paymentMethod =
+        document
+            .getElementById("paymentMethod")
+            .value;
+
+
+    const orderResult =
+        document.getElementById(
+            "orderResult"
+        );
+
+
+    /* CHECK CART */
+
+    if (cartItems.length === 0) {
+
+        alert(
+            "Your cart is empty. Please add products before placing an order."
+        );
+
+        return;
+
+    }
+
+
+    /* CHECK DETAILS */
+
+    if (
+        customerName === "" ||
+        customerPhone === "" ||
+        customerAddress === "" ||
+        paymentMethod === ""
+    ) {
+
+        orderResult.style.background =
+            "#ffe8e6";
+
+        orderResult.style.color =
+            "#8b2f25";
+
+        orderResult.textContent =
+            "Please fill all order details.";
+
+        return;
+
+    }
+
+
+    /* CHECK PHONE */
+
+    if (
+        !/^[0-9]{10}$/.test(
+            customerPhone
+        )
+    ) {
+
+        orderResult.style.background =
+            "#ffe8e6";
+
+        orderResult.style.color =
+            "#8b2f25";
+
+        orderResult.textContent =
+            "Please enter a valid 10-digit phone number.";
+
+        return;
+
+    }
+
+
+    /* CALCULATE TOTAL */
+
+    const totalPrice =
+        cartItems.reduce(
+
+            function(total, item) {
+
+                return total +
+                    (
+                        item.price *
+                        item.quantity
+                    );
+
+            },
+
+            0
+        );
+
+
+    /* CREATE ORDER ID */
+
+    const orderId =
+        "AH" +
+        Date.now()
+            .toString()
+            .slice(-8);
+
+
+    /* ORDER OBJECT */
+
+    const orderDetails = {
+
+        orderId:
+            orderId,
+
+        customerName:
+            customerName,
+
+        customerPhone:
+            customerPhone,
+
+        customerAddress:
+            customerAddress,
+
+        paymentMethod:
+            paymentMethod,
+
+        items:
+            cartItems,
+
+        total:
+            totalPrice,
+
+        orderDate:
+            new Date().toLocaleString()
+
+    };
+
+
+    /* SAVE ORDER */
+
+    localStorage.setItem(
+
+        "adivasiHaatLastOrder",
+
+        JSON.stringify(
+            orderDetails
+        )
+
+    );
+
+
+    /* SUCCESS MESSAGE */
+
+    orderResult.style.background =
+        "#e8f5e9";
+
+    orderResult.style.color =
+        "#31572c";
+
+
+    orderResult.innerHTML =
+
+        "✅ <strong>Order Placed Successfully!</strong><br><br>" +
+
+        "Order ID: " +
+        orderId +
+        "<br>" +
+
+        "Customer: " +
+        customerName +
+        "<br>" +
+
+        "Total Amount: ₹" +
+        totalPrice +
+        "<br>" +
+
+        "Payment: " +
+        paymentMethod +
+        "<br><br>" +
+
+        "Thank you for shopping with Adivasi Haat! 🌿";
+
+
+    /* EMPTY CART */
+
+    cartItems = [];
+
+
+    saveCart();
+
+    renderCart();
+
+
+    /* CLEAR FORM */
+
+    document
+        .getElementById(
+            "customerName"
+        )
+        .value = "";
+
+
+    document
+        .getElementById(
+            "customerPhone"
+        )
+        .value = "";
+
+
+    document
+        .getElementById(
+            "customerAddress"
+        )
+        .value = "";
+
+
+    document
+        .getElementById(
+            "paymentMethod"
+        )
+        .value = "";
+
+}
+
+
+/* =====================================================
+   PRICE SUGGESTION
+===================================================== */
+
+function suggestPrice() {
+
+    const product =
+        document
+            .getElementById(
+                "productName"
+            )
+            .value
+            .trim();
+
+
+    const price =
+        Number(
+            document
+                .getElementById(
+                    "productPrice"
+                )
+                .value
+        );
+
+
+    const quality =
+        document
+            .getElementById(
+                "quality"
+            )
+            .value;
+
+
+    const result =
+        document.getElementById(
+            "result"
+        );
+
+
+    if (
+        product === "" ||
+        price <= 0 ||
+        quality === ""
+    ) {
+
+        result.textContent =
+            "Please enter all details.";
+
+        return;
+
+    }
+
+
+    let suggestedPrice =
+        price;
+
+
+    if (quality === "Good") {
+
+        suggestedPrice =
+            price + 50;
+
+    }
+
+    else if (
+        quality === "Very Good"
+    ) {
+
+        suggestedPrice =
+            price + 100;
+
+    }
+
+    else if (
+        quality === "Premium"
+    ) {
+
+        suggestedPrice =
+            price + 150;
+
+    }
+
+    else if (
+        quality === "Standard"
+    ) {
+
+        suggestedPrice =
+            price + 200;
+
+    }
+
+
+    result.innerHTML =
+
+        "Product: " +
+        product +
+
+        "<br>" +
+
+        "Suggested Price: ₹" +
+        suggestedPrice;
+
+}
+
+
+/* =====================================================
+   START APPLICATION
+===================================================== */
+
+displayProducts();
+
+loadCart();
+
+renderCart();
+
+</script>
+
+
+</body>
+
+</html>
